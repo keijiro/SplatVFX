@@ -61,6 +61,7 @@ public sealed class SplatImporter : ScriptedImporter
     {
         var bytes = (Span<byte>)File.ReadAllBytes(path);
         var count = bytes.Length / 32;
+        Debug.Log(count);
 
         var source = MemoryMarshal.Cast<byte, ReadData>(bytes);
 
@@ -88,8 +89,13 @@ public sealed class SplatImporter : ScriptedImporter
                        out Vector3 scale,
                        out Color color)
     {
+        var rv = (math.float4(src.rx, src.ry, src.rz, src.rw) - 128) / 128;
+        var q = math.quaternion(rv);
+        var xaxis = math.mul(q, math.float3(1, 0, 0));
+        var yaxis = math.mul(q, math.float3(0, 1, 0));
+
         position = math.float3(src.px, src.py, src.pz);
-        rotation = (math.float4(src.rx, src.ry, src.rz, src.rw) - 128) / 128;
+        rotation = math.float4(xaxis.xy, yaxis.xy);
         scale = math.float3(src.sx, src.sy, src.sz);
         color = (Vector4)math.float4(src.r, src.g, src.b, src.a) / 255;
     }

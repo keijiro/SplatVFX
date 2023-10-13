@@ -1,3 +1,5 @@
+using Unity.Burst;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.AssetImporters;
@@ -5,7 +7,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
-[ScriptedImporter(1, "splat")]
+[ScriptedImporter(1, "splat"), BurstCompile]
 public sealed class SplatImporter : ScriptedImporter
 {
     #region ScriptedImporter implementation
@@ -28,27 +30,39 @@ public sealed class SplatImporter : ScriptedImporter
 
     #region Reader implementation
 
-    static Vector4 Byte4ToVector4(byte x, byte y, byte z, byte w)
-      => (new Vector4(x, y, z, w) - Vector4.one * 128) / 128.0f;
-
     SplatData ImportAsSplatData(string path)
     {
-        var read = ReadArrays(path);
         var data = ScriptableObject.CreateInstance<SplatData>();
-        data.PositionArray = read.position;
-        data.RotationArray = read.rotation;
-        data.ScaleArray = read.scale;
-        data.ColorArray = read.color;
         data.name = Path.GetFileNameWithoutExtension(path);
+
+        var arrays = LoadDataArrays(path);
+        data.PositionArray = arrays.position;
+        data.RotationArray = arrays.rotation;
+        data.ScaleArray = arrays.scale;
+        data.ColorArray = arrays.color;
+
         return data;
     }
 
+#pragma warning disable CS0649
+
+    struct ReadData
+    {
+        public float px, py, pz;
+        public float sx, sy, sz;
+        public byte r, g, b, a;
+        public byte rx, ry, rz, rw;
+    }
+
+#pragma warning restore CS0649
+
     (Vector3[] position, Vector4[] rotation, Vector3[] scale, Color[] color)
-        ReadArrays(string path)
+        LoadDataArrays(string path)
     {
         var bytes = (Span<byte>)File.ReadAllBytes(path);
-        var floats = MemoryMarshal.Cast<byte, float>(bytes);
         var count = bytes.Length / 32;
+
+        var source = MemoryMarshal.Cast<byte, ReadData>(bytes);
 
         var position = new Vector3[count];
         var rotation = new Vector4[count];
@@ -57,18 +71,27 @@ public sealed class SplatImporter : ScriptedImporter
 
         for (var i = 0; i < count; i++)
         {
-            var bslice = bytes.Slice(i * 32);
-            var fslice = floats.Slice(i * 8);
-
-            position[i] = new Vector3(fslice[0], fslice[1], fslice[2]);
-            scale[i] = new Vector3(fslice[3], fslice[4], fslice[5]);
-            color[i] = new Color32(bslice[24], bslice[25], bslice[26], bslice[27]);
-            rotation[i] = Byte4ToVector4(bslice[28], bslice[29], bslice[30], bslice[31]);
-
-            if (i < 100) Debug.Log(scale[i]);
+            ParseReadData(source[i],
+                          out position[i],
+                          out rotation[i],
+                          out scale[i],
+                          out color[i]);
         }
 
         return (position, rotation, scale, color);
+    }
+
+    [BurstCompile]
+    void ParseReadData(in ReadData src,
+                       out Vector3 position,
+                       out Vector4 rotation,
+                       out Vector3 scale,
+                       out Color color)
+    {
+        position = math.float3(src.px, src.py, src.pz);
+        rotation = (math.float4(src.rx, src.ry, src.rz, src.rw) - 128) / 128;
+        scale = math.float3(src.sx, src.sy, src.sz);
+        color = (Vector4)math.float4(src.r, src.g, src.b, src.a) / 255;
     }
 
     #endregion

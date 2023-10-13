@@ -116,7 +116,7 @@ MonoBehaviour:
   - {fileID: 114350483966674992}
   m_ExposedName: Vector2
   m_Exposed: 1
-  m_Order: 2
+  m_Order: 0
   m_Category: 
   m_Min:
     m_Type:
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_OutputSlots: []
   m_ExposedName: Vector3
   m_Exposed: 0
-  m_Order: 3
+  m_Order: 1
   m_Category: 
   m_Min:
     m_Type:

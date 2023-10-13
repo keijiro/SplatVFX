@@ -77,6 +77,7 @@ public sealed class SplatImporter : ScriptedImporter
                           out rotation[i],
                           out scale[i],
                           out color[i]);
+            if (i < 100) Debug.Log(scale[i]);
         }
 
         return (position, rotation, scale, color);

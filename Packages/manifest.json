@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "com.unity.render-pipelines.universal": "15.0.6",
+    "com.unity.visualeffectgraph": "15.0.6"
+  }
+}

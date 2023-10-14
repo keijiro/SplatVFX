@@ -37,9 +37,9 @@ public sealed class SplatImporter : ScriptedImporter
 
         var arrays = LoadDataArrays(path);
         data.PositionArray = arrays.position;
-        data.RotationArray = arrays.rotation;
-        data.ScaleArray = arrays.scale;
+        data.AxisArray = arrays.axis;
         data.ColorArray = arrays.color;
+        data.ReleaseGpuResources();
 
         return data;
     }
@@ -51,12 +51,12 @@ public sealed class SplatImporter : ScriptedImporter
         public float px, py, pz;
         public float sx, sy, sz;
         public byte r, g, b, a;
-        public byte rx, ry, rz, rw;
+        public byte rw, rx, ry, rz;
     }
 
 #pragma warning restore CS0649
 
-    (Vector3[] position, Vector4[] rotation, Vector3[] scale, Color[] color)
+    (Vector3[] position, Vector3[] axis, Color[] color)
         LoadDataArrays(string path)
     {
         var bytes = (Span<byte>)File.ReadAllBytes(path);
@@ -66,39 +66,34 @@ public sealed class SplatImporter : ScriptedImporter
         var source = MemoryMarshal.Cast<byte, ReadData>(bytes);
 
         var position = new Vector3[count];
-        var rotation = new Vector4[count];
-        var scale = new Vector3[count];
+        var axis = new Vector3[count * 3];
         var color = new Color[count];
 
         for (var i = 0; i < count; i++)
-        {
             ParseReadData(source[i],
                           out position[i],
-                          out rotation[i],
-                          out scale[i],
+                          out axis[i * 3],
+                          out axis[i * 3 + 1],
+                          out axis[i * 3 + 2],
                           out color[i]);
-            if (i < 100) Debug.Log(scale[i]);
-        }
 
-        return (position, rotation, scale, color);
+        return (position, axis, color);
     }
 
     [BurstCompile]
     void ParseReadData(in ReadData src,
                        out Vector3 position,
-                       out Vector4 rotation,
-                       out Vector3 scale,
+                       out Vector3 axis1,
+                       out Vector3 axis2,
+                       out Vector3 axis3,
                        out Color color)
     {
         var rv = (math.float4(src.rx, src.ry, src.rz, src.rw) - 128) / 128;
-        var q = math.quaternion(rv);
-        var xaxis = math.mul(q, math.float3(1, 0, 0));
-        var yaxis = math.mul(q, math.float3(0, 1, 0));
-
+        var q = math.quaternion(rv.x, rv.y, rv.z, rv.w);
         position = math.float3(src.px, src.py, src.pz);
-        rotation = math.float4(xaxis.xy, yaxis.xy);
-        scale = math.float3(src.sx, src.sy, src.sz);
-        scale = math.mul(q, scale);
+        axis1 = math.mul(q, math.float3(src.sx, 0, 0));
+        axis2 = math.mul(q, math.float3(0, src.sy, 0));
+        axis3 = math.mul(q, math.float3(0, 0, src.sz));
         color = (Vector4)math.float4(src.r, src.g, src.b, src.a) / 255;
     }
 

@@ -354,13 +354,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749317290}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.99699515, y: 0.07321467, z: -0.001853262, w: 0.025236653}
-  m_LocalPosition: {x: 0, y: 1.72, z: -9.5}
+  m_LocalRotation: {x: 0.7560084, y: 0.13529614, z: -0.6251414, w: 0.1390843}
+  m_LocalPosition: {x: 0.3, y: 2.12, z: -6.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 177.1, y: 0, z: -8.4}
+  m_LocalEulerAnglesHint: {x: 157.7, y: 78.8, z: -1.9}
 --- !u!114 &1749317294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,10 +392,8 @@ MonoBehaviour:
   _data: {fileID: 7239065423396753691, guid: 85419bba415809449a0f9539fb253e76, type: 3}
   _positionBufferProperty:
     m_Name: PositionBuffer
-  _rotationBufferProperty:
-    m_Name: RotationBuffer
-  _scaleBufferProperty:
-    m_Name: ScaleBuffer
+  _axisBufferProperty:
+    m_Name: AxisBuffer
   _colorBufferProperty:
     m_Name: ColorBuffer
 --- !u!1660057539 &9223372036854775807

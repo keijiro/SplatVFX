@@ -8,8 +8,7 @@ public sealed class SplatData : ScriptableObject
 
     public int SplatCount => PositionArray.Length;
     public GraphicsBuffer PositionBuffer => GetCachedBuffers().position;
-    public GraphicsBuffer RotationBuffer => GetCachedBuffers().rotation;
-    public GraphicsBuffer ScaleBuffer => GetCachedBuffers().scale;
+    public GraphicsBuffer AxisBuffer => GetCachedBuffers().axis;
     public GraphicsBuffer ColorBuffer => GetCachedBuffers().color;
 
     #endregion
@@ -20,36 +19,43 @@ public sealed class SplatData : ScriptableObject
     public Vector3[] PositionArray { get; set; }
 
     [field:SerializeField, HideInInspector]
-    public Vector4[] RotationArray { get; set; }
-
-    [field:SerializeField, HideInInspector]
-    public Vector3[] ScaleArray { get; set; }
+    public Vector3[] AxisArray { get; set; }
 
     [field:SerializeField, HideInInspector]
     public Color[] ColorArray { get; set; }
 
     #endregion
 
+    #region Public methods
+
+    public void ReleaseGpuResources()
+    {
+        _cachedBuffers.position?.Release();
+        _cachedBuffers.axis?.Release();
+        _cachedBuffers.color?.Release();
+        _cachedBuffers = (null, null, null);
+    }
+
+    #endregion
+
     #region GPU resource management
 
-    (GraphicsBuffer position, GraphicsBuffer rotation,
-     GraphicsBuffer scale, GraphicsBuffer color) _cachedBuffers;
+    (GraphicsBuffer position, GraphicsBuffer axis, GraphicsBuffer color)
+      _cachedBuffers;
 
     static unsafe GraphicsBuffer NewBuffer<T>(int count) where T : unmanaged
       => new GraphicsBuffer(GraphicsBuffer.Target.Structured, count, sizeof(T));
 
-    (GraphicsBuffer position, GraphicsBuffer rotation,
-     GraphicsBuffer scale, GraphicsBuffer color) GetCachedBuffers()
+    (GraphicsBuffer position, GraphicsBuffer axis, GraphicsBuffer color)
+      GetCachedBuffers()
     {
         if (_cachedBuffers.position == null)
         {
             _cachedBuffers.position = NewBuffer<Vector3>(SplatCount);
-            _cachedBuffers.rotation = NewBuffer<Vector4>(SplatCount);
-            _cachedBuffers.scale = NewBuffer<Vector3>(SplatCount);
+            _cachedBuffers.axis = NewBuffer<Vector3>(SplatCount * 3);
             _cachedBuffers.color = NewBuffer<Color>(SplatCount);
             _cachedBuffers.position.SetData(PositionArray);
-            _cachedBuffers.rotation.SetData(RotationArray);
-            _cachedBuffers.scale.SetData(ScaleArray);
+            _cachedBuffers.axis.SetData(AxisArray);
             _cachedBuffers.color.SetData(ColorArray);
         }
         return _cachedBuffers;
@@ -59,14 +65,7 @@ public sealed class SplatData : ScriptableObject
 
     #region ScriptableObject implementation
 
-    void OnDisable()
-    {
-        _cachedBuffers.position?.Release();
-        _cachedBuffers.rotation?.Release();
-        _cachedBuffers.scale?.Release();
-        _cachedBuffers.color?.Release();
-        _cachedBuffers = (null, null, null, null);
-    }
+    void OnDisable() => ReleaseGpuResources();
 
     #endregion
 }

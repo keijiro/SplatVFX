@@ -98,6 +98,7 @@ public sealed class SplatImporter : ScriptedImporter
         position = math.float3(src.px, src.py, src.pz);
         rotation = math.float4(xaxis.xy, yaxis.xy);
         scale = math.float3(src.sx, src.sy, src.sz);
+        scale = math.mul(q, scale);
         color = (Vector4)math.float4(src.r, src.g, src.b, src.a) / 255;
     }
 

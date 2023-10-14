@@ -1,6 +1,16 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "Keijiro",
+      "url": "https://registry.npmjs.com",
+      "scopes": [
+        "jp.keijiro"
+      ]
+    }
+  ],
   "dependencies": {
     "com.unity.render-pipelines.universal": "15.0.6",
-    "com.unity.visualeffectgraph": "15.0.6"
+    "com.unity.visualeffectgraph": "15.0.6",
+    "jp.keijiro.klak.motion": "1.1.0"
   }
 }

@@ -89,8 +89,8 @@ public sealed class SplatImporter : ScriptedImporter
                        out Color color)
     {
         var rv = (math.float4(src.rx, src.ry, src.rz, src.rw) - 128) / 128;
-        var q = math.quaternion(rv.x, rv.y, rv.z, rv.w);
-        position = math.float3(src.px, src.py, src.pz);
+        var q = math.quaternion(-rv.x, -rv.y, rv.z, rv.w);
+        position = math.float3(src.px, src.py, -src.pz);
         axis1 = math.mul(q, math.float3(src.sx, 0, 0));
         axis2 = math.mul(q, math.float3(0, src.sy, 0));
         axis3 = math.mul(q, math.float3(0, 0, src.sz));

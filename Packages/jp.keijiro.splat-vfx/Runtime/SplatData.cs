@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
+namespace SplatVfx {
+
 public sealed class SplatData : ScriptableObject
 {
     #region Public properties
@@ -69,3 +71,5 @@ public sealed class SplatData : ScriptableObject
 
     #endregion
 }
+
+} // namespace SplatVfx

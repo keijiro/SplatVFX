@@ -7,6 +7,8 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
+namespace SplatVfx.Editor {
+
 [ScriptedImporter(1, "splat"), BurstCompile]
 public sealed class SplatImporter : ScriptedImporter
 {
@@ -99,3 +101,5 @@ public sealed class SplatImporter : ScriptedImporter
 
     #endregion
 }
+
+} // namespace SplatVfx.Editor

@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.VFX.Utility;
 
+namespace SplatVfx {
+
 [AddComponentMenu("VFX/Property Binders/Splat Data Binder")]
 [VFXBinder("Splat Data")]
 class VFXSplatDataBinder : VFXBinderBase
@@ -46,3 +48,5 @@ class VFXSplatDataBinder : VFXBinderBase
       => $"Splat Data : {_positionBufferProperty}, {_axisBufferProperty}, "
        + $"{_colorBufferProperty}";
 }
+
+} // namespace SplatVfx

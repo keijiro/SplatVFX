@@ -1,0 +1,13 @@
+{
+  "author": "Keijiro Takahashi",
+  "dependencies": {},
+  "description": "3D Gaussian Splatting support for VFX Graph",
+  "displayName": "Splat VFX",
+  "keywords": [ "unity" ],
+  "license": "Unlicense",
+  "name": "jp.keijiro.splat-vfx",
+  "repository": "github:keijiro/SplatVFX",
+  "unity": "2023.1",
+  "unityRelease": "0f1",
+  "version": "0.0.1"
+}

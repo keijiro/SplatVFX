@@ -82,6 +82,12 @@
       },
       "url": "https://registry.npmjs.com"
     },
+    "jp.keijiro.splat-vfx": {
+      "version": "file:jp.keijiro.splat-vfx",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.modules.imgui": {
       "version": "1.0.0",
       "depth": 3,

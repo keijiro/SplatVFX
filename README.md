@@ -7,7 +7,7 @@ Unity VFX Graph.
 
 ## FAQ
 
-### Is is ready for use?
+### Is it ready for use?
 
 **No.** I made many compromisations to implement it on VFX Graph. I strongly
 recommend trying other solutions like [this one].

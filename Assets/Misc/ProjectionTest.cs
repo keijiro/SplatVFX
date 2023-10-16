@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.VFX;
 
-public sealed class SingleController : MonoBehaviour
+public sealed class ProjectionTest : MonoBehaviour
 {
     [field:SerializeField]
     public Transform LinkedTo;

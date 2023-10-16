@@ -6,9 +6,9 @@ namespace SplatVfx {
 
 [AddComponentMenu("VFX/Property Binders/Splat Data Binder")]
 [VFXBinder("Splat Data")]
-class VFXSplatDataBinder : VFXBinderBase
+public sealed class VFXSplatDataBinder : VFXBinderBase
 {
-    [SerializeField] SplatData _data = null;
+    public SplatData SplatData = null;
 
     public string PositionBufferProperty
       { get => (string)_positionBufferProperty;
@@ -32,16 +32,16 @@ class VFXSplatDataBinder : VFXBinderBase
     ExposedProperty _colorBufferProperty = "ColorBuffer";
 
     public override bool IsValid(VisualEffect component)
-      => _data != null &&
+      => SplatData != null &&
          component.HasGraphicsBuffer(_positionBufferProperty) &&
          component.HasGraphicsBuffer(_axisBufferProperty) &&
          component.HasGraphicsBuffer(_colorBufferProperty);
 
     public override void UpdateBinding(VisualEffect component)
     {
-        component.SetGraphicsBuffer(_positionBufferProperty, _data.PositionBuffer);
-        component.SetGraphicsBuffer(_axisBufferProperty, _data.AxisBuffer);
-        component.SetGraphicsBuffer(_colorBufferProperty, _data.ColorBuffer);
+        component.SetGraphicsBuffer(_positionBufferProperty, SplatData.PositionBuffer);
+        component.SetGraphicsBuffer(_axisBufferProperty, SplatData.AxisBuffer);
+        component.SetGraphicsBuffer(_colorBufferProperty, SplatData.ColorBuffer);
     }
 
     public override string ToString()

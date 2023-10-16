@@ -1,8 +1,11 @@
 using Unity.Burst;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.VFX;
+using UnityEngine.VFX.Utility;
 using UnityEditor;
 using UnityEditor.AssetImporters;
+using UnityEditor.Experimental;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -16,16 +19,31 @@ public sealed class SplatImporter : ScriptedImporter
 
     public override void OnImportAsset(AssetImportContext context)
     {
-        var gameObject = new GameObject();
         var data = ImportAsSplatData(context.assetPath);
+        var prefab = CreatePrefab(data);
+        context.AddObjectToAsset("prefab", prefab);
+        context.AddObjectToAsset("data", data);
+        context.SetMainObject(prefab);
+    }
 
-        var setter = gameObject.AddComponent<SplatDataSetter>();
-        setter.SplatData = data;
+    #endregion
 
-        context.AddObjectToAsset("prefab", gameObject);
-        if (data != null) context.AddObjectToAsset("data", data);
+    #region Prefab construction
 
-        context.SetMainObject(gameObject);
+    const string DefaultVfxPath = "Packages/jp.keijiro.splat-vfx/VFX/Splat.vfx";
+
+    GameObject CreatePrefab(SplatData data)
+    {
+        var go = new GameObject();
+
+        var vfx = go.AddComponent<VisualEffect>();
+        vfx.visualEffectAsset = EditorResources.Load<VisualEffectAsset>(DefaultVfxPath);
+
+        var binderBase = go.AddComponent<VFXPropertyBinder>();
+        var binder = binderBase.AddPropertyBinder<VFXSplatDataBinder>();
+        binder.SplatData = data;
+
+        return go;
     }
 
     #endregion
@@ -46,7 +64,7 @@ public sealed class SplatImporter : ScriptedImporter
         return data;
     }
 
-#pragma warning disable CS0649
+    #pragma warning disable CS0649
 
     struct ReadData
     {
@@ -56,7 +74,7 @@ public sealed class SplatImporter : ScriptedImporter
         public byte rw, rx, ry, rz;
     }
 
-#pragma warning restore CS0649
+    #pragma warning restore CS0649
 
     (Vector3[] position, Vector3[] axis, Color[] color)
         LoadDataArrays(string path)

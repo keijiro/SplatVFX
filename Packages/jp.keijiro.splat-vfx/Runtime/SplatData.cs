@@ -17,14 +17,9 @@ public sealed class SplatData : ScriptableObject
 
     #region Serialized data
 
-    [field:SerializeField, HideInInspector]
-    public Vector3[] PositionArray { get; set; }
-
-    [field:SerializeField, HideInInspector]
-    public Vector3[] AxisArray { get; set; }
-
-    [field:SerializeField, HideInInspector]
-    public Color[] ColorArray { get; set; }
+    [field:SerializeField] public Vector3[] PositionArray { get; set; }
+    [field:SerializeField] public Vector3[] AxisArray { get; set; }
+    [field:SerializeField] public Color[] ColorArray { get; set; }
 
     #endregion
 

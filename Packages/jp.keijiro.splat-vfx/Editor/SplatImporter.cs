@@ -81,7 +81,6 @@ public sealed class SplatImporter : ScriptedImporter
     {
         var bytes = (Span<byte>)File.ReadAllBytes(path);
         var count = bytes.Length / 32;
-        Debug.Log(count);
 
         var source = MemoryMarshal.Cast<byte, ReadData>(bytes);
 

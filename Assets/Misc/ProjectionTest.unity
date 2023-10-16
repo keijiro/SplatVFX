@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 1480096079}
   - component: {fileID: 1480096078}
   - component: {fileID: 1480096077}
+  - component: {fileID: 1480096081}
   - component: {fileID: 1480096080}
   m_Layer: 0
   m_Name: Quad
@@ -328,7 +329,16 @@ VisualEffect:
     m_Vector2f:
       m_Array: []
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 3, y: 0, z: 0}
+        m_Name: Axis1
+        m_Overridden: 1
+      - m_Value: {x: 0, y: 0.5, z: 0}
+        m_Name: Axis2
+        m_Overridden: 1
+      - m_Value: {x: 0, y: 0, z: 1}
+        m_Name: Axis3
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -362,6 +372,19 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1480096080
 MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480096076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35514eb3947241349a82a93f283158f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LinkedTo: {fileID: 1654430500}
+--- !u!114 &1480096081
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -369,10 +392,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1480096076}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5c2494089ca3c44be04ac764a45594, type: 3}
+  m_Script: {fileID: 11500000, guid: cdafc37f32b176349b1684c4455b98e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LinkedTo: {fileID: 1654430500}
+  m_ExecuteInEditor: 1
+  m_Bindings:
+  - {fileID: 1480096080}
+  m_VisualEffect: {fileID: 1480096078}
 --- !u!1 &1639811233
 GameObject:
   m_ObjectHideFlags: 0

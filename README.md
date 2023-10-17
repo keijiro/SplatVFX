@@ -16,15 +16,15 @@ trying other solutions like [UnityGaussianSplatting].
 
 [UnityGaussianSplatting]: https://github.com/aras-p/UnityGaussianSplatting
 
-## How to try the samples
+## How to try the samples.
 
-- Download the test `.splat` file ([bicycle.splat]) and put it in the
+- Download the sample `.splat` file ([bicycle.splat]) and put it in the
   `URP/Assets` directory.
 - Open `URP/Assets/Test.unity` and start Play Mode.
 
 [bicycle.splat]: https://huggingface.co/cakewalk/splat-data/resolve/main/bicycle.splat
 
-## How to create a `.splat` file
+## How to create a `.splat` file.
 
 `.splat` is an ad-hoc file format used in antimatter15's
 [WebGL Gaussian Splat Viewer]. You can convert a `.ply` file into `.splat` by

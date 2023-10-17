@@ -131,7 +131,7 @@ MonoBehaviour:
   - {fileID: 28}
   m_ExposedName: A
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 0
   m_Category: 
   m_Min:
     m_Type:
@@ -283,7 +283,7 @@ MonoBehaviour:
   - {fileID: 32}
   m_ExposedName: B
   m_Exposed: 1
-  m_Order: 4
+  m_Order: 1
   m_Category: 
   m_Min:
     m_Type:
@@ -435,7 +435,7 @@ MonoBehaviour:
   m_OutputSlots: []
   m_ExposedName: Area
   m_Exposed: 0
-  m_Order: 5
+  m_Order: 2
   m_Category: 
   m_Min:
     m_Type:

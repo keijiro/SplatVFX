@@ -19,7 +19,7 @@ recommend trying other solutions like [this one].
 ## How to try it
 
 - Download the test splat file ([bicycle.splat]).
-- Put the file in the `Assets` folder.
-- Open `Test.unity` and start the Play Mode.
+- Put the file in the `URP/Assets` folder.
+- Open `URP/Assets/Test.unity` and start the Play Mode.
 
 [bicycle.splat]: https://huggingface.co/cakewalk/splat-data/resolve/main/bicycle.splat

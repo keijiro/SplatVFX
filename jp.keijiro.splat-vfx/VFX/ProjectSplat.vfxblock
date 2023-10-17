@@ -347,8 +347,8 @@ MonoBehaviour:
   - title: 
     position:
       serializedVersion: 2
-      x: 704
-      y: -188
+      x: 705
+      y: -191
       width: 178
       height: 100
     contents: 'This is a magic number!
@@ -364,7 +364,7 @@ MonoBehaviour:
     x: 206
     y: -594
     width: 1187
-    height: 506
+    height: 502
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4353,7 +4353,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 2}
   m_Children: []
-  m_UIPosition: {x: 735, y: -274}
+  m_UIPosition: {x: 736, y: -277}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:

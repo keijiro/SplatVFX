@@ -11,15 +11,25 @@ Unity VFX Graph.
 
 ### Is it ready for use?
 
-**No.** I made many compromisations to implement it on VFX Graph. I strongly
-recommend trying other solutions like [this one].
+**No.** I made many compromises to implement it with VFX Graph. I recommend
+trying other solutions like [UnityGaussianSplatting].
 
-[this one]: https://github.com/aras-p/UnityGaussianSplatting
+[UnityGaussianSplatting]: https://github.com/aras-p/UnityGaussianSplatting
 
-## How to try it
+## How to try the samples
 
-- Download the test splat file ([bicycle.splat]).
-- Put the file in the `URP/Assets` folder.
-- Open `URP/Assets/Test.unity` and start the Play Mode.
+- Download the test `.splat` file ([bicycle.splat]) and put it in the
+  `URP/Assets` directory.
+- Open `URP/Assets/Test.unity` and start Play Mode.
 
 [bicycle.splat]: https://huggingface.co/cakewalk/splat-data/resolve/main/bicycle.splat
+
+## How to create a `.splat` file
+
+`.splat` is an ad-hoc file format used in antimatter15's
+[WebGL Gaussian Splat Viewer]. You can convert a `.ply` file into `.splat` by
+dragging and dropping it into a viewer window.
+
+[WebGL Gaussian Splat Viewer]: https://github.com/antimatter15/splat
+
+

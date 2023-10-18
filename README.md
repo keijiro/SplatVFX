@@ -35,10 +35,10 @@ dragging and dropping it into a viewer window.
 
 ## How to increase the capacity.
 
-The default VFX Graph (`Splat.vfx`) supports up to 8 million points. You
-must increase the capacity when your `.splat` file has more points.
-Duplicate `Splat.vfx` into your project and edit it to change the
-capacity value in the Initialize Particle context.
+The default VFX Graph (`Splat.vfx`) supports up to 8 million points. You must
+increase the capacity when your `.splat` file has more points. Duplicate
+`Splat.vfx` into your project and edit it to change the capacity value in the
+Initialize Particle context.
 
 ![capacity](https://github.com/keijiro/SplatVFX/assets/343936/f8fe53b1-9173-4db7-b8b8-fbc0c00949d5)
 
@@ -48,11 +48,10 @@ You can check how many points are in a `.splat` file on Inspector.
 
 # Limitations
 
-- Typically, `.splat` files are trained with the reference rasterizer
-running on the sRGB color space. It causes artifacts when using the
-Linear Lighting Mode in Unity. You can remedy it by grading in
-post-processing, but it's impossible to get perfect results with
-manual tweaks.
+- Typically, `.splat` files are trained with the reference rasterizer running
+  on the sRGB color space. It causes artifacts when using the Linear Lighting
+  Mode in Unity. You can remedy it by grading in post-processing, but it's
+  impossible to get perfect results with manual tweaks.
 
-- The Gaussian projection algorithm used in the VFX Graph is far from
-perfect. It causes many artifacts, including sudden pops with camera motion.
+- The Gaussian projection algorithm used in the VFX Graph is far from perfect.
+  It causes many artifacts, including sudden pops with camera motion.

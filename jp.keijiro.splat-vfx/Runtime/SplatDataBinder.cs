@@ -10,6 +10,10 @@ public sealed class VFXSplatDataBinder : VFXBinderBase
 {
     public SplatData SplatData = null;
 
+    public string SplatCountProperty
+      { get => (string)_splatCountProperty;
+        set => _splatCountProperty = value; }
+
     public string PositionBufferProperty
       { get => (string)_positionBufferProperty;
         set => _positionBufferProperty = value; }
@@ -22,6 +26,9 @@ public sealed class VFXSplatDataBinder : VFXBinderBase
       { get => (string)_colorBufferProperty;
         set => _colorBufferProperty = value; }
 
+    [VFXPropertyBinding("System.UInt32"), SerializeField]
+    ExposedProperty _splatCountProperty = "SplatCount";
+
     [VFXPropertyBinding("UnityEngine.GraphicsBuffer"), SerializeField]
     ExposedProperty _positionBufferProperty = "PositionBuffer";
 
@@ -33,20 +40,22 @@ public sealed class VFXSplatDataBinder : VFXBinderBase
 
     public override bool IsValid(VisualEffect component)
       => SplatData != null &&
+         component.HasUInt(_splatCountProperty) &&
          component.HasGraphicsBuffer(_positionBufferProperty) &&
          component.HasGraphicsBuffer(_axisBufferProperty) &&
          component.HasGraphicsBuffer(_colorBufferProperty);
 
     public override void UpdateBinding(VisualEffect component)
     {
+        component.SetUInt(_splatCountProperty, (uint)SplatData.SplatCount);
         component.SetGraphicsBuffer(_positionBufferProperty, SplatData.PositionBuffer);
         component.SetGraphicsBuffer(_axisBufferProperty, SplatData.AxisBuffer);
         component.SetGraphicsBuffer(_colorBufferProperty, SplatData.ColorBuffer);
     }
 
     public override string ToString()
-      => $"Splat Data : {_positionBufferProperty}, {_axisBufferProperty}, "
-       + $"{_colorBufferProperty}";
+      => $"Splat Data : {_splatCountProperty}, {_positionBufferProperty}, "
+       + $"{_axisBufferProperty}, {_colorBufferProperty}";
 }
 
 } // namespace SplatVfx

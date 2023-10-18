@@ -45,3 +45,14 @@ capacity value in the Initialize Particle context.
 You can check how many points are in a `.splat` file on Inspector.
 
 ![count](https://github.com/keijiro/SplatVFX/assets/343936/d6793722-d088-4904-b297-71f802fe617c)
+
+# Limitations
+
+- Typically, `.splat` files are trained with the reference rasterizer
+running on the sRGB color space. It causes artifacts when using the
+Linear Lighting Mode in Unity. You can remedy it by grading in
+post-processing, but it's impossible to get perfect results with
+manual tweaks.
+
+- The Gaussian projection algorithm used in the VFX Graph is far from
+perfect. It causes many artifacts, including sudden pops with camera motion.

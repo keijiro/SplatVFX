@@ -1,6 +1,7 @@
 # SplatVFX
 
 ![gif](https://github.com/keijiro/SplatVFX/assets/343936/19fa65e7-7db5-4151-84d1-70966a27d2d1)
+![gif](https://github.com/keijiro/SplatVFX/assets/343936/2267b740-0b91-41e0-9036-5b07adae90e0)
 
 *SplatVFX* is an experimental implementation of [3D Gaussian Splatting] with
 Unity VFX Graph.

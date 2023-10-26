@@ -29,9 +29,10 @@ trying other solutions like [UnityGaussianSplatting].
 
 `.splat` is an ad-hoc file format used in antimatter15's
 [WebGL Gaussian Splat Viewer]. You can convert a `.ply` file into `.splat` by
-dragging and dropping it into a viewer window.
+dragging and dropping it into a viewer window, e.g. [here].
 
 [WebGL Gaussian Splat Viewer]: https://github.com/antimatter15/splat
+[here]: https://antimatter15.com/splat/
 
 ## How to increase the capacity.
 

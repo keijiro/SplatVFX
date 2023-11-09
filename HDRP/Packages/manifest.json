@@ -9,8 +9,8 @@
     }
   ],
   "dependencies": {
-    "com.unity.render-pipelines.high-definition": "15.0.6",
-    "jp.keijiro.splat-vfx": "file:../../jp.keijiro.splat-vfx",
-    "jp.keijiro.klak.motion": "1.1.0"
+    "com.unity.render-pipelines.high-definition": "15.0.7",
+    "jp.keijiro.klak.motion": "1.1.0",
+    "jp.keijiro.splat-vfx": "file:../../jp.keijiro.splat-vfx"
   }
 }

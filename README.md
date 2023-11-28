@@ -33,6 +33,17 @@ dragging and dropping it into a viewer window.
 
 [WebGL Gaussian Splat Viewer]: https://github.com/antimatter15/splat
 
+## How to try your own `.splat` file in the editor with the visual effect.
+
+- Download the github repo.
+- Follow the instructions above to create your own `.splat` file.
+- Rename the `.splat` file to `bicycle.splat`.
+- Drag & drop it in the VFX/Asset folder (where you will also see the `bicycle.splat.meta` file.
+- Open the folder "VFX" via the Unity Hub to open the right project.
+- Open the "VFX" scene (present in the 'Assets' folder).
+- Enter play mode.
+- Optional: Depending on your splat, you might want to try this for better results: In the 'VFX' scene, unroll the "Camera Pivot" object hierarchy and move the "Direction" game object around to modify the camera position. You can also edit the 'Camera' object's FOV via the inspector (Try to keep it between 45 and 90 degrees for best results). 
+
 ## How to increase the capacity.
 
 The default VFX Graph (`Splat.vfx`) supports up to 8 million points. You must

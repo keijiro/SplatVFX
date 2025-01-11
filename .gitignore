@@ -3,10 +3,10 @@ Desktop.ini
 .DS_Store
 *.swp
 
-/*RP/Library
-/*RP/Logs
-/*RP/Recordings
-/*RP/Temp
-/*RP/UserSettings
+/*/Library
+/*/Logs
+/*/Recordings
+/*/Temp
+/*/UserSettings
 
 *.splat
